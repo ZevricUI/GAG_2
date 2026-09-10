@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Zev Hub — The perfect Roblox Scripts. Search scripts by game, browse executors, and copy loadstrings instantly." />
+  <title>Zev Hub — The perfect Roblox Scripts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Animated background blobs -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+  </div>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-inner glass">
+      <a href="#/" class="brand" aria-label="Zev Hub home">
+        <span class="brand-mark">⚡</span>
+        <span class="brand-text">
+          <span class="brand-name">Zev Hub</span>
+          <span class="brand-tag">The perfect Roblox Scripts</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
+        <a href="#/" class="nav-tab" data-route="/">Home</a>
+        <a href="#/executors" class="nav-tab" data-route="/executors">Executors</a>
+        <a href="#/loader" class="nav-tab" data-route="/loader">Loader</a>
+        <a href="#/control" class="nav-tab" data-route="/control">Control</a>
+      </nav>
+
+      <div class="nav-actions" id="navActions">
+        <a href="#discord" class="nav-tab nav-discord" id="discordBtn">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.2.36-.43.84-.59 1.23-1.82-.27-3.62-.27-5.4 0A12.6 12.6 0 0 0 9.98 3 19.74 19.74 0 0 0 6.22 4.37C2.86 9.36 1.96 14.23 2.41 19.03a19.93 19.93 0 0 0 6.02 3.03c.49-.66.92-1.36 1.29-2.1-.71-.27-1.39-.6-2.04-.99.17-.13.34-.26.5-.4 3.93 1.82 8.18 1.82 12.06 0 .16.14.33.27.5.4-.65.39-1.33.72-2.05.99.37.74.8 1.44 1.29 2.1a19.9 19.9 0 0 0 6.02-3.03c.52-5.55-.9-10.38-3.69-14.66ZM9.68 16.34c-1.18 0-2.15-1.08-2.15-2.4 0-1.32.95-2.4 2.15-2.4 1.2 0 2.17 1.09 2.15 2.4 0 1.32-.95 2.4-2.15 2.4Zm4.96 0c-1.18 0-2.15-1.08-2.15-2.4 0-1.32.95-2.4 2.15-2.4 1.2 0 2.17 1.09 2.15 2.4 0 1.32-.95 2.4-2.15 2.4Z"/></svg>
+          <span>Join Discord</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- App content -->
+  <main id="app" class="container"></main>
+
+  <!-- Toast for copy feedback -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Discord modal -->
+  <div class="modal-overlay" id="discordModal" aria-hidden="true">
+    <div class="modal glass" role="dialog" aria-modal="true" aria-labelledby="discordModalTitle">
+      <button class="modal-close" id="discordModalClose" aria-label="Close">×</button>
+      <div class="modal-icon">💬</div>
+      <h2 id="discordModalTitle">Join the Zev Hub Discord</h2>
+      <p>Get script updates, support, and announcements from our community.</p>
+      <a href="https://discord.gg/R9ZbHHg8" target="_blank" rel="noopener noreferrer" class="btn btn-discord-lg">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.2.36-.43.84-.59 1.23-1.82-.27-3.62-.27-5.4 0A12.6 12.6 0 0 0 9.98 3 19.74 19.74 0 0 0 6.22 4.37C2.86 9.36 1.96 14.23 2.41 19.03a19.93 19.93 0 0 0 6.02 3.03c.49-.66.92-1.36 1.29-2.1-.71-.27-1.39-.6-2.04-.99.17-.13.34-.26.5-.4 3.93 1.82 8.18 1.82 12.06 0 .16.14.33.27.5.4-.65.39-1.33.72-2.05.99.37.74.8 1.44 1.29 2.1a19.9 19.9 0 0 0 6.02-3.03c.52-5.55-.9-10.38-3.69-14.66ZM9.68 16.34c-1.18 0-2.15-1.08-2.15-2.4 0-1.32.95-2.4 2.15-2.4 1.2 0 2.17 1.09 2.15 2.4 0 1.32-.95 2.4-2.15 2.4Zm4.96 0c-1.18 0-2.15-1.08-2.15-2.4 0-1.32.95-2.4 2.15-2.4 1.2 0 2.17 1.09 2.15 2.4 0 1.32-.95 2.4-2.15 2.4Z"/></svg>
+        Open Discord
+      </a>
+      <p class="modal-small">discord.gg/R9ZbHHg8</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Zev Hub · The perfect Roblox Scripts · For educational purposes only.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
